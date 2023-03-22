@@ -83,17 +83,35 @@ URL 파라미터에 입력한 값 가져오는 훅
 - mount, update 시 코드 실행해주는 훅
 - html 렌더링 이후에 실행됨.
 
-```
+```react
 useEffect(() => {
     setTimeout(() => {
-      // div 숨김
       setAlert(false);
     }, 2000);
+
+    return () => {
+      // useEffect 동작 전에 실행됨
+    }
   }, [count])
   // count state가 변할 때만 실행
 ```
 
+- dependency에 []만 작성하면 update시에는 실행되지 않고, mount 시에만 실행됨
+- useEffect 동작 전에 실행되는 return() => {}
 
+
+
+**정리**
+
+```react
+useEffect(()=> {}) // mount, update 시 실해
+useEffect(()=> {}, []) // mount 시에만 실행, 특정 state 변경 시에만 실행하려면 [state명]
+useEffect(()=> {
+  return () => {
+    
+  }
+}. [])
+```
 
 
 
